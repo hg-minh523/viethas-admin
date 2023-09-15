@@ -15,7 +15,7 @@ interface Product {
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.css'],
+  styleUrls: ['./styles/product-form.component.css'],
 })
 
 

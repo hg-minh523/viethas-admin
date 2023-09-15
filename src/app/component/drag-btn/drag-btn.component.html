@@ -1,0 +1,74 @@
+<div class="container">
+    <button (click)="addDragBtn()" class="add-btn">Add btn</button>
+    <!-- [style.transform]="'translate(300px,200px)'" -->
+
+    <button (click)="handleButtonClick($event)" *ngFor="let button of btnList" cdkDrag class="draggable-button"
+        (cdkDragEnded)="onDragEnded($event, button.id)"
+        id = {{button.id}}
+        [style.transform]="'translate(' + button.x + 'px, ' + button.y + 'px)'"
+        [style.color]="'button.color'"
+        [style.font-size]="button.fontSize"
+        [style.font-style]="button.fontStyle"
+        [style.font-family]="button.fontFamily"
+        [style.justify-content]="button.justifyContent"
+        [style.align-items]="button.alignItems"
+        [style.text-decoration]="button.textDecoration"
+        [style.font-weight]="button.fontWeight"
+        [style.font-style]="button.fontStyle"
+        >
+        {{ button.text }}
+    </button>
+
+    <div class="category">
+        <!-- <button class="add-btn">Add btn</button> -->
+        <p>Nội dung</p>
+        <textarea name="" (ngModelChange)="changeTextContent($event)" ngModel value={{textContent}} id="textContent" cols="30" rows="10"></textarea>
+        <p>Size</p>
+        <input (change)="changeFontSize($event)" ngModel value ={{fontSize}} type="text" placeholder="size">
+        <p>Font chữ</p>
+        <mat-form-field>
+            <mat-label>Font</mat-label>
+            <mat-select (selectionChange)="changeFontFamily($event)"  value={{fontFamily}}>
+                <mat-option *ngFor="let item of font" [value]="item">
+                    {{item}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <p>Kiểu chữ</p>
+        <mat-button-toggle-group  (change)="changeFontStyle($event.value)" multiple ngModel [value]="fontStyle" name="format_word" aria-label="Ingredients">
+            <mat-button-toggle value="bold">
+                <mat-icon> format_bold</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="underline">
+                <mat-icon> format_underlined</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="italic">
+                <mat-icon> format_italic</mat-icon>
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+        <p>Canh lề</p>
+        <mat-button-toggle-group (change)="changVertical($event.value)" value={{vertical}} name="format_position" aria-label="Ingredients">
+            <mat-button-toggle value="start">
+                <mat-icon> format_align_left</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="center">
+                <mat-icon> format_align_center</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="end">
+                <mat-icon> format_align_right</mat-icon>
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+        <p>Vị trí chữ</p>
+        <mat-button-toggle-group value={{textPosition}} (change)="changePosition($event.value)" aria-valuenow="1" name="format_vertical" aria-label="Ingredients">
+            <mat-button-toggle value="end">
+                <mat-icon> vertical_align_bottom</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="center">
+                <mat-icon> vertical_align_center</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="start">
+                <mat-icon> vertical_align_top</mat-icon>
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+</div>
